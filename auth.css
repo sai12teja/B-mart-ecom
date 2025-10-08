@@ -1,0 +1,430 @@
+/* Auth Modal Styles */
+#authModal .modal-content {
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+    overflow: hidden;
+}
+
+#authModal .modal-header {
+    background: linear-gradient(135deg, var(--primary), #1e62d8);
+    color: white;
+    border-bottom: none;
+    padding: 1.5rem 2rem;
+}
+
+#authModal .modal-header .btn-close {
+    filter: invert(1);
+    opacity: 0.8;
+}
+
+#authModal .modal-header .btn-close:hover {
+    opacity: 1;
+}
+
+#authModal .modal-body {
+    padding: 2rem;
+}
+
+/* Auth Tabs */
+#authModal .nav-tabs {
+    border: none;
+    background: #f8f9fa;
+    border-radius: 8px;
+    padding: 4px;
+    margin-bottom: 2rem;
+}
+
+#authModal .nav-tabs .nav-link {
+    border: none;
+    color: #6c757d;
+    font-weight: 600;
+    padding: 12px 24px;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+#authModal .nav-tabs .nav-link::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+    transition: left 0.5s ease;
+}
+
+#authModal .nav-tabs .nav-link:hover::before {
+    left: 100%;
+}
+
+#authModal .nav-tabs .nav-link:hover {
+    color: var(--primary);
+    background: rgba(40, 116, 240, 0.05);
+}
+
+#authModal .nav-tabs .nav-link.active {
+    color: white;
+    background: var(--primary);
+    box-shadow: 0 2px 8px rgba(40, 116, 240, 0.3);
+}
+
+/* Form Styles */
+#authModal .form-label {
+    font-weight: 600;
+    color: #495057;
+    margin-bottom: 8px;
+    font-size: 0.9rem;
+}
+
+#authModal .form-control {
+    padding: 12px 16px;
+    border: 2px solid #e9ecef;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+    background: #fafbfc;
+}
+
+#authModal .form-control:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 0.2rem rgba(40, 116, 240, 0.15);
+    background: white;
+    transform: translateY(-1px);
+}
+
+#authModal .form-control.is-valid {
+    border-color: var(--success);
+    box-shadow: 0 0 0 0.2rem rgba(56, 142, 60, 0.15);
+}
+
+#authModal .form-control.is-invalid {
+    border-color: #dc3545;
+    box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.15);
+}
+
+#authModal .input-group-text {
+    background: #f8f9fa;
+    border: 2px solid #e9ecef;
+    border-right: none;
+}
+
+#authModal .input-group .form-control {
+    border-left: none;
+}
+
+/* Password Toggle */
+.password-toggle {
+    cursor: pointer;
+    background: #f8f9fa;
+    border: 2px solid #e9ecef;
+    border-left: none;
+    transition: all 0.3s ease;
+}
+
+.password-toggle:hover {
+    background: #e9ecef;
+    color: var(--primary);
+}
+
+/* Button Styles */
+#authModal .btn {
+    padding: 14px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    border: none;
+    position: relative;
+    overflow: hidden;
+}
+
+#authModal .btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255,255,255,0.2);
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    transform: translate(-50%, -50%);
+}
+
+#authModal .btn:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+#authModal .btn-primary {
+    background: linear-gradient(135deg, var(--primary), #1e62d8);
+    box-shadow: 0 4px 15px rgba(40, 116, 240, 0.3);
+}
+
+#authModal .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(40, 116, 240, 0.4);
+}
+
+#authModal .btn-success {
+    background: linear-gradient(135deg, var(--success), #2e7d32);
+    box-shadow: 0 4px 15px rgba(56, 142, 60, 0.3);
+}
+
+#authModal .btn-success:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(56, 142, 60, 0.4);
+}
+
+#authModal .btn:disabled {
+    opacity: 0.6;
+    transform: none !important;
+    box-shadow: none !important;
+}
+
+/* Alert Styles */
+#authModal .alert {
+    border: none;
+    border-radius: 8px;
+    padding: 12px 16px;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+}
+
+#authModal .alert-danger {
+    background: rgba(220, 53, 69, 0.1);
+    color: #dc3545;
+    border-left: 4px solid #dc3545;
+}
+
+#authModal .alert .btn-close {
+    padding: 0.75rem;
+}
+
+/* Password Strength */
+.password-strength {
+    margin-top: 8px;
+}
+
+.password-strength .progress {
+    height: 6px !important;
+    border-radius: 3px;
+    background: #e9ecef;
+}
+
+.password-strength .progress-bar {
+    border-radius: 3px;
+    transition: all 0.3s ease;
+}
+
+.password-strength .strength-text {
+    font-size: 0.8rem;
+    margin-top: 4px;
+    display: block;
+}
+
+/* Form Group Animations */
+.form-group {
+    position: relative;
+    margin-bottom: 1.5rem;
+}
+
+.form-group .form-control {
+    transition: all 0.3s ease;
+}
+
+.form-group .form-control:focus ~ .floating-label {
+    top: -8px;
+    left: 12px;
+    font-size: 0.75rem;
+    color: var(--primary);
+    background: white;
+    padding: 0 4px;
+}
+
+.floating-label {
+    position: absolute;
+    top: 12px;
+    left: 16px;
+    font-size: 0.95rem;
+    color: #6c757d;
+    pointer-events: none;
+    transition: all 0.3s ease;
+    background: transparent;
+}
+
+/* Social Login Styles */
+.social-login {
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid #e9ecef;
+}
+
+.social-login .divider {
+    text-align: center;
+    margin: 1rem 0;
+    color: #6c757d;
+    font-size: 0.9rem;
+    position: relative;
+}
+
+.social-login .divider::before,
+.social-login .divider::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 45%;
+    height: 1px;
+    background: #e9ecef;
+}
+
+.social-login .divider::before {
+    left: 0;
+}
+
+.social-login .divider::after {
+    right: 0;
+}
+
+.social-buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 1rem;
+}
+
+.social-btn {
+    padding: 12px;
+    border: 2px solid #e9ecef;
+    border-radius: 8px;
+    background: white;
+    color: #495057;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.social-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.social-btn.google {
+    border-color: #db4437;
+    color: #db4437;
+}
+
+.social-btn.google:hover {
+    background: #db4437;
+    color: white;
+}
+
+.social-btn.facebook {
+    border-color: #4267B2;
+    color: #4267B2;
+}
+
+.social-btn.facebook:hover {
+    background: #4267B2;
+    color: white;
+}
+
+/* Auth status in navbar */
+#auth-status {
+    font-weight: 600;
+}
+
+.navbar-nav .dropdown-menu {
+    border: none;
+    box-shadow: 0 5px 25px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    padding: 8px;
+    min-width: 200px;
+}
+
+.navbar-nav .dropdown-item {
+    padding: 10px 16px;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.navbar-nav .dropdown-item:hover {
+    background-color: rgba(40, 116, 240, 0.1);
+    color: var(--primary);
+}
+
+.navbar-nav .dropdown-item i {
+    width: 16px;
+    text-align: center;
+}
+
+/* Responsive Design */
+@media (max-width: 576px) {
+    #authModal .modal-dialog {
+        margin: 20px;
+    }
+    
+    #authModal .modal-body {
+        padding: 1.5rem;
+    }
+    
+    #authModal .nav-tabs .nav-link {
+        padding: 10px 16px;
+        font-size: 0.9rem;
+    }
+    
+    .social-buttons {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Loading Animation */
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.05);
+        opacity: 0.8;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.btn-loading {
+    animation: pulse 1.5s ease-in-out infinite;
+}
+
+/* Success Animation */
+@keyframes successCheck {
+    0% {
+        transform: scale(0);
+        opacity: 0;
+    }
+    50% {
+        transform: scale(1.2);
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.success-check {
+    animation: successCheck 0.5s ease-out;
+}

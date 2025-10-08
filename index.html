@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>B-Mart - Online Shopping</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <style>
+        :root {
+            --primary: #2874f0;
+            --secondary: #fb641b;
+            --dark: #212121;
+            --light: #f5f5f5;
+            --success: #388e3c;
+        }
+
+        body {
+            background-color: #f1f3f6;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        /* Navigation */
+        .navbar-brand {
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+
+        .search-container {
+            max-width: 500px;
+        }
+
+        .bg-gradient-primary {
+            background: linear-gradient(135deg, var(--primary), #1e62d8) !important;
+        }
+
+        /* Hero Video Section */
+        .hero-section {
+            position: relative;
+            height: 500px;
+            overflow: hidden;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            background: linear-gradient(135deg, var(--primary), #1e62d8); /* Fallback background */
+        }
+
+        .hero-video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(40, 116, 240, 0.8), rgba(251, 100, 27, 0.6));
+            display: flex;
+            align-items: center;
+            padding: 0 4rem;
+        }
+
+        .hero-content {
+            color: white;
+            max-width: 600px;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero-subtitle {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .hero-btn {
+            background: white;
+            color: var(--primary);
+            padding: 12px 30px;
+            border-radius: 4px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: none;
+        }
+
+        .hero-btn:hover {
+            background: var(--secondary);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        /* Categories */
+        .categories-section {
+            margin-bottom: 4rem;
+        }
+
+        .category-card {
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+            text-align: center;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            height: 100%;
+        }
+
+        .category-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .category-icon {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+
+        /* Products */
+        .products-section {
+            margin-bottom: 4rem;
+        }
+
+        .product-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: none;
+            height: 100%;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+        }
+
+        .product-image {
+            height: 200px;
+            object-fit: contain;
+            padding: 15px;
+            background: white;
+            transition: transform 0.3s ease;
+        }
+
+        .product-card:hover .product-image {
+            transform: scale(1.05);
+        }
+
+        .product-price {
+            font-size: 1.25rem;
+            font-weight: bold;
+            color: var(--dark);
+        }
+
+        .product-rating {
+            background: var(--success);
+            color: white;
+            padding: 2px 8px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            display: inline-block;
+        }
+
+        /* Badges */
+        .badge-sale {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: var(--secondary);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            z-index: 1;
+            font-weight: 600;
+        }
+
+        /* Add to Cart Button */
+        .add-to-cart-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            width: 100%;
+            margin-top: 1rem;
+        }
+
+        .add-to-cart-btn:hover {
+            background: #1e62d8;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(40, 116, 240, 0.4);
+        }
+
+        /* Section Headers */
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 1rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: var(--primary);
+            border-radius: 2px;
+        }
+
+        .section-subtitle {
+            color: #666;
+            font-size: 1.1rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-section {
+                height: 400px;
+            }
+            
+            .hero-overlay {
+                padding: 0 2rem;
+            }
+            
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+
+        /* Button styles */
+        .btn-primary {
+            background: var(--primary);
+            border-color: var(--primary);
+        }
+
+        .btn-primary:hover {
+            background: #1e62d8;
+            border-color: #1e62d8;
+        }
+
+        .btn-warning {
+            background: var(--secondary);
+            border-color: var(--secondary);
+            color: white;
+        }
+
+        .btn-warning:hover {
+            background: #e55b18;
+            border-color: #e55b18;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-gradient-primary sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <i class="fas fa-shopping-bag me-2"></i>
+                B-Mart
+            </a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <div class="search-container mx-4 flex-grow-1">
+                    <form action="search.html" method="GET" class="d-flex">
+                        <input type="text" class="form-control" name="q" id="search-input" placeholder="Search for products...">
+                        <button class="btn btn-warning ms-2" type="submit">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </form>
+                </div>
+
+                <div class="navbar-nav ms-auto">
+                    <a class="nav-link active" href="index.html">
+                        <i class="fas fa-home me-1"></i>Home
+                    </a>
+                    <a class="nav-link" href="Categories .html">
+                        <i class="fas fa-th-large me-1"></i>Categories
+                    </a>
+                    <div class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="authDropdown" role="button" data-bs-toggle="dropdown">
+                            <i class="fas fa-user me-1"></i>
+                            <span id="auth-status">Login</span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#" id="login-btn">Login</a></li>
+                            <li><a class="dropdown-item" href="#" id="register-btn">Register</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item d-none" href="#" id="logout-btn">Logout</a></li>
+                        </ul>
+                    </div>
+                    <a class="nav-link position-relative" href="carts.html">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="cart-count">0</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Video Section -->
+    <div class="container mt-4">
+        <div class="hero-section">
+            <!-- Video with multiple source options to avoid 404 -->
+            <video class="hero-video" autoplay muted loop playsinline>
+                <!-- Try multiple paths to avoid 404 -->
+                <source src="./assets/video.mp4" type="video/mp4">
+                <source src="./video.mp4" type="video/mp4">
+                <source src="video.mp4" type="video/mp4">
+                <source src="../video.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <div class="hero-overlay">
+                <div class="hero-content">
+                    <h1 class="hero-title animate__animated animate__fadeInDown">Welcome to B-Mart</h1>
+                    <p class="hero-subtitle animate__animated animate__fadeInUp">Discover amazing products at unbeatable prices. Shop the latest trends with exclusive deals!</p>
+                    <button class="hero-btn animate__animated animate__fadeInUp" onclick="location.href='categories.html'">
+                        Start Shopping <i class="fas fa-arrow-right ms-2"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Simple Banner Section (No image to avoid 404) -->
+    <div class="container mb-4">
+        <div class="row align-items-center bg-gradient-primary text-white rounded p-4">
+            <div class="col-md-8">
+                <h2 class="display-6 fw-bold">B-Mart Mega Sale!</h2>
+                <p class="lead mb-3">Up to 70% off on all products. Limited time offer!</p>
+                <a href="Categories .html" class="btn btn-warning btn-lg">Shop Now</a>
+            </div>
+            <div class="col-md-4 text-center">
+                <i class="fas fa-gift display-1 opacity-75"></i>
+            </div>
+        </div>
+    </div>
+
+    <!-- Featured Categories -->
+    <div class="container categories-section">
+        <div class="section-header">
+            <h2 class="section-title">Shop by Category</h2>
+            <p class="section-subtitle">Explore our wide range of product categories</p>
+        </div>
+        <div class="row g-4" id="featured-categories">
+            <div class="col-12 text-center">
+                <div class="spinner-border" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+                <p class="mt-2">Loading categories...</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Featured Products -->
+    <div class="container products-section">
+        <div class="section-header">
+            <h2 class="section-title">Featured Products</h2>
+            <p class="section-subtitle">Handpicked items just for you</p>
+        </div>
+        <div class="row g-4" id="featured-products">
+            <div class="col-12 text-center">
+                <div class="spinner-border" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+                <p class="mt-2">Loading featured products...</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white mt-5">
+        <div class="container py-5">
+            <div class="row">
+                <div class="col-md-3">
+                    <h5>B-Mart</h5>
+                    <p>Your one-stop shop for all your needs. Quality products at affordable prices.</p>
+                </div>
+                <div class="col-md-3">
+                    <h5>Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="index.html" class="text-white-50">Home</a></li>
+                        <li><a href="Categories .html" class="text-white-50">Categories</a></li>
+                        <li><a href="carts.html" class="text-white-50">Cart</a></li>
+                        <li><a href="#" class="text-white-50">About Us</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h5>Customer Service</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-white-50">Shipping Info</a></li>
+                        <li><a href="#" class="text-white-50">Returns</a></li>
+                        <li><a href="#" class="text-white-50">Privacy Policy</a></li>
+                        <li><a href="#" class="text-white-50">Terms & Conditions</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h5>Connect With Us</h5>
+                    <div class="social-links">
+                        <a href="#" class="text-white-50 me-3"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-white-50 me-3"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-white-50 me-3"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-white-50"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div class="text-center">
+                <p>&copy; 2023 B-Mart. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="auth.js"></script>
+    <script src="main.js"></script>
+    <script src="home.js"></script>
+    <script src="categories.js"></script>
+
+    <script>
+        // Enhanced add to cart animation
+        function enhanceAddToCart() {
+            document.addEventListener('click', function(e) {
+                if (e.target.closest('.add-to-cart-btn')) {
+                    const button = e.target.closest('.add-to-cart-btn');
+                    const originalText = button.innerHTML;
+                    
+                    // Add animation
+                    button.innerHTML = '<i class="fas fa-check"></i> Added to Cart!';
+                    button.style.background = 'var(--success)';
+                    
+                    // Add bounce animation
+                    button.classList.add('animate__animated', 'animate__bounce');
+                    
+                    // Reset after 2 seconds
+                    setTimeout(() => {
+                        button.innerHTML = originalText;
+                        button.style.background = '';
+                        button.classList.remove('animate__animated', 'animate__bounce');
+                    }, 2000);
+                }
+            });
+        }
+
+        // Video fallback handling
+        function handleVideoError() {
+            const video = document.querySelector('.hero-video');
+            if (video) {
+                video.addEventListener('error', function() {
+                    console.log('Video failed to load, using fallback background');
+                    // Hide the video element
+                    video.style.display = 'none';
+                    // The gradient background from CSS will show as fallback
+                });
+                
+                // Also check if video can play
+                video.addEventListener('canplay', function() {
+                    console.log('Video loaded successfully');
+                });
+            }
+        }
+
+        // Initialize when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            enhanceAddToCart();
+            handleVideoError();
+            
+            // Add scroll animations
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.animation = 'fadeInUp 0.8s ease-out';
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+            
+            // Observe elements when data loads
+            if (window.BMart) {
+                window.BMart.waitForData(() => {
+                    setTimeout(() => {
+                        document.querySelectorAll('.product-card, .category-card').forEach(card => {
+                            card.style.opacity = '0';
+                            card.style.animation = 'fadeInUp 0.8s ease-out forwards';
+                        });
+                    }, 100);
+                });
+            }
+        });
+
+        // Simple fadeInUp animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes fadeInUp {
+                from {
+                    opacity: 0;
+                    transform: translateY(30px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
